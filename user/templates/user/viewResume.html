@@ -1,0 +1,134 @@
+{% extends "job/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+  
+
+<div id="titlebar" class="resume">
+	<div class="container">
+		<div class="ten columns">
+			<div class="resume-titlebar">
+			   <img class="rounded-circle account-img" src="{{ resume.photo.url }}">
+				<div class="resumes-list-content">
+					<h4>{{resume.name.user.get_full_name}}<span>{{ resume.profession_title }}</span></h4>
+					<span class="icons"><i class="fa fa-map-marker"></i> {{ resume.location }}</span>
+					<div class="clearfix"></div>
+
+				</div>
+			</div>
+		</div>
+
+		<div class="six columns">
+			<div class="two-buttons">
+			</div>
+		</div>
+
+	</div>
+</div>
+
+<div class="container">
+	<!-- Recent Jobs -->
+	<div class="">
+	    <div class="">
+		      <h3 class="margin-bottom-15">About Me</h3>
+          <p class="margin-reset">
+			<p>Email : {{ resume.name.user.email }}</p>
+          </p>
+		      <br>
+	      </div>
+	   </div>
+
+
+	<!-- Widgets -->
+	<div>
+
+		<h3 class="margin-bottom-20">Education</h3>
+
+    {% for e in education %}
+
+		<!-- Resume Table -->
+		<dl class="resume-table">
+			<dt>
+				<small class="date">{{e.start_end_date}}</small>
+				<strong>{{ e.school_name }},{{ e.qualifications }}</strong>
+			</dt>
+			<dd>
+				{% if e.notes %}
+			      {{e.notes}}
+		     {% else %}
+			       Nothing Added
+		     {% endif %}
+			</dd>
+
+		</dl>
+
+        {% endfor %}
+
+	</div>
+
+  	<div class="">
+
+		<h3 class="margin-bottom-20">Experiences</h3>
+
+    {% for e in education %}
+
+		<!-- Resume Table -->
+		<dl class="resume-table">
+			<dt>
+				<small class="date">{{e.start_end_date}}</small>
+				<strong>{{ e.job_title }}</strong>
+			</dt>
+			<dd>
+				{% if e.notes %}
+			      {{e.notes}}
+		     {% else %}
+			       Nothing Added
+		     {% endif %}
+			</dd>
+
+		</dl>
+
+        {% endfor %}
+
+	</div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+<div id="footer">
+	<div class="container">
+	<!-- Main -->
+	</div>
+
+	<!-- Bottom -->
+	<div class="container">
+		<div class="footer-bottom">
+			<div class="sixteen columns">
+				<h4>Follow Us</h4>
+				<ul class="social-icons">
+					<li><a class="facebook" href="#"><i class="icon-facebook"></i></a></li>
+					<li><a class="twitter" href="#"><i class="icon-twitter"></i></a></li>
+					<li><a class="gplus" href="#"><i class="icon-gplus"></i></a></li>
+					<li><a class="linkedin" href="#"><i class="icon-linkedin"></i></a></li>
+				</ul>
+				<div class="copyrights">©  Copyright 2020 by <a href="#">Solution's Master</a>. All Rights Reserved.</div>
+			</div>
+		</div>
+	</div>
+
+</div>
+
+<!-- Back To Top Button -->
+<div id="backtotop"><a href="#"></a></div>
+
+
+
+{% endblock content %}

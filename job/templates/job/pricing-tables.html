@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+{% extends "job/base.html" %}
+{% load static %}
+{% block content %}
+<br>
+<br>
+<br>
+
+<script src="https://js.stripe.com/v3/"></script>
+	<script>
+		var stripe = Stripe('pk_test_q0V0YGOQDA3uX0xX8dgAYH3k00U94a42H5');
+	var elements = stripe.elements();
+	var cardElement = elements.create('card');
+
+		console.log(cardElement)
+	</script>
+	<div class="container">
+
+		
+
+
+		<!-- Container / Start -->
+		<div class="container">
+			
+			<div class="container">
+
+				{% if messages %}
+				<br>
+				<br>
+				<br>
+				<ul class="messagelist">{% for message in messages %}<li>{{ message }}</li>{% endfor %}</ul>
+				{% endif %}
+			</div>
+			<div class="sixteen columns">
+				<h3 class="margin-bottom-20">Pricing</h3>
+			</div>
+			
+			
+			{% for package in packages %}
+			<!-- Plan #2 -->	
+			<div class="{% cycle 'plan color-1 one-third column' 'plan color-2 one-third column' %}">
+				<div class="plan-price">
+					<h3>{{package.package_type}}</h3>
+					<span class="plan-currency">$</span>
+					<span class="value">{{package.price}}</span>
+				</div>
+				<div class="plan-features">
+					<ul>
+						<li>One Time Fee</li>
+						<li>This Plan Includes {{package.job_posting_limit}} Jobs</li>
+						<li>Highlighted Job Post</li>
+						<li>View {{package.resume_view_limit}} resumes</li>
+						<li>Posted For {{package.job_posted_time}} Days</li>
+					</ul>
+					<a class="button" href="{% url 'checkout' package.id  %}"><i class="fa fa-shopping-cart"></i> Proceed to Payment</a>
+				</div>
+			</div>
+					
+			{% endfor %}
+		
+		</div>
+		<!-- Container / End -->
+		
+		<br>
+		<br>
+		
+		
+		</div>
+		
+		<!-- Container / End -->
+
+	
+		
+	</script>
+	<div id="payment-request-button">
+		<!-- A Stripe Element will be inserted here. -->
+	  </div>
+	
+
+{% endblock %}
+
+</body>
+</html>

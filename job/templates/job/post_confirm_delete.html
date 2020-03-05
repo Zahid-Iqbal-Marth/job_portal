@@ -1,0 +1,61 @@
+{% extends "job/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+{% if user.customer.Type== 'EM'%}
+<div id="titlebar" class="single">
+	<div class="container">
+
+		<div class="sixteen columns">
+			<h2>Delete Job</h2>
+		</div>
+
+	</div>
+</div>
+
+<div class="container">
+     <div class="content-section">
+
+        <form method="POST">
+            {% csrf_token %}
+            <fieldset class="form-group">
+                <h2>Are you sure you want to delete the post {{object.title}}</h2>
+            </fieldset>
+            <div class="form-group" style="margin-top:2vh;">
+                <button class="btn btn-outline-danger" type="submit">Yes, Delete</button>
+                <a class='btn btn-outline-primary' style="margin-left:2vh;" href="{% url 'post-detail' object.id%}">Cancel</a>
+            </div>
+		</form>
+
+    </div>
+
+</div>
+
+<div id="footer" style="margin-top:25vh;">
+	<!-- Main -->
+	<div class="container">
+	</div>
+
+	<!-- Bottom -->
+	<div class="container">
+		<div class="footer-bottom">
+			<div class="sixteen columns">
+				<h4>Follow Us</h4>
+				<ul class="social-icons">
+					<li><a class="facebook" href="#"><i class="icon-facebook"></i></a></li>
+					<li><a class="twitter" href="#"><i class="icon-twitter"></i></a></li>
+					<li><a class="gplus" href="#"><i class="icon-gplus"></i></a></li>
+					<li><a class="linkedin" href="#"><i class="icon-linkedin"></i></a></li>
+				</ul>
+				<div class="copyrights">©  Copyright 2020 by <a href="#">Ahmed Bajwa</a>. All Rights Reserved.</div>
+			</div>
+		</div>
+	</div>
+
+</div>
+
+<!-- Back To Top Button -->
+<div id="backtotop"><a href="#"></a></div>
+
+
+{% endif %}    
+{% endblock content %}

@@ -1,0 +1,105 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet">
+    <link href="http://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet">
+
+    <link rel="stylesheet" href="{% static 'job/css//style.css' %}">
+    <link rel="stylesheet" href="{% static 'job/css/colors/green.css'%}" id="colors"> {% if title %}
+    <title>Job Portal - {{ title }}</title>
+    {% else %}
+    <title>Job Portal</title>
+    {% endif %}
+</head>
+
+<body>
+
+    <div id="wrapper">
+        <header>
+            <div class="container">
+                <div class="sixteen columns">
+                    <div id="logo">
+                        <h1>
+                            <a href="{% url 'job-home' %}">
+                                <img src="{% static 'job/images/logo.png' %}" alt="Work Scout"/>
+                            </a>
+                        </h1>
+                    </div>
+                    <nav id="navigation" class="menu">
+                        <ul id="responsive">
+
+                            <li>
+                                <a href="{% url 'job-home' %}" id="current">Home</a>
+                            </li>
+
+                            {% if user.is_authenticated %} {% if user.customer.Type == 'EM' %}
+                            <li>
+                                <a href="#" id="current">For Employers</a>
+                                <ul>
+                                    <li><a href="{% url 'post-create' %}">Add Job</a></li>
+                                    <li><a href="{% url 'user-myjob' %}">Manage Jobs</a></li>
+                                    <li><a href="{% url 'user-profile' %}">Manage Profile</a></li>
+                                </ul>
+                            </li>
+                            {% elif user.customer.Type == 'CN' %}
+                            <li>
+                                <a href="#" id="current">For Candidates</a>
+                                <ul>
+                                    <li><a href="{% url 'job-home' %}">Browse Jobs</a></li>
+                                    <li><a href="{% url 'user-myresume' %}">View Resume</a></li>
+                                    <li><a href="{% url 'user-addresume' %}">Add Resume</a></li>
+                                </ul>
+                            </li>
+                            {% endif %}
+                            <li>
+                                <a href="{% url 'logout' %}">Logout</a>
+                            </li>
+                            {% else %}
+                            <li>
+                                <a href="{% url 'user-register' %}"><i class="fa fa-user"></i> Sign Up</a>
+                            </li>
+                            <li>
+                                <a href="{% url 'login' %}"><i class="fa fa-lock"></i> Log In</a>
+                            </li>
+                        </ul>
+                        {% endif %}
+                    </nav>
+                </div>
+            </div>
+        </header>
+
+        <main role="main" class="container-fluid">
+            <div class="row">
+                <div class="col-md-8">
+                    {% if messages %} {% for message in messages %}
+                    <div class="alert alert-{{ message.tags }}">
+                        {{ message }}
+                    </div>
+                    {% endfor %} {% endif %} {% block content %}{% endblock %}
+                </div>
+            </div>
+        </main>
+
+
+
+        <script src="{% static 'job/scripts/jquery-2.1.3.min.js' %}"></script>
+        <script src="{% static 'job/scripts/custom.js' %}"></script>
+        <script src="{% static 'job/scripts/jquery.superfish.js' %}"></script>
+        <script src="{% static 'job/scripts/jquery.themepunch.tools.min.js' %}"></script>
+        <script src="{% static 'job/scripts/jquery.themepunch.revolution.min.js' %}"></script>
+        <script src="{% static 'job/scripts/jquery.themepunch.showbizpro.min.js' %}"></script>
+        <script src="{% static 'job/scripts/jquery.flexslider-min.js' %}"></script>
+        <script src="{% static 'job/scripts/chosen.jquery.min.js' %}"></script>
+        <script src="{% static 'job/scripts/jquery.magnific-popup.min.js' %}"></script>
+        <script src="{% static 'job/scripts/waypoints.min.js' %}"></script>
+        <script src="{% static 'job/scripts/jquery.counterup.min.js' %}"></script>
+        <script src="{% static 'job/scripts/jquery.jpanelmenu.js' %}"></script>
+        <script src="{% static 'job/scripts/stacktable.js' %}"></script>
+
+</div>

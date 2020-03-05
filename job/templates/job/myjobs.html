@@ -1,0 +1,78 @@
+{% extends "job/base.html" %}
+{% load static %}
+{% block content %}
+
+<div id="titlebar" class="single">
+	<div class="container">
+
+		<div class="sixteen columns">
+			<h2>Jobs</h2>
+		</div>
+
+	</div>
+</div>
+
+<div class="container">
+	
+	<!-- Table -->
+	<div class="sixteen columns">
+
+		<table class="manage-table responsive-table">
+   
+    
+
+			<tr>
+				<th><i class="fa fa-file-text"></i> Title</th>
+				<th><i class="fa fa-calendar"></i> Date Posted</th>
+			</tr>
+										
+			{% for job in jobs %}
+
+			<tr>
+				<td class="title"><a href="{% url 'post-detail' job.id %}">{{ job.job_title }}</a></td>
+				<td>{{ job.post_date }}</td>
+			</tr>	
+           {% endfor %}
+
+		</table>
+
+		<br>
+
+	</div>
+
+</div>
+
+
+<!-- Footer
+================================================== -->
+<div class="margin-top-60"></div>
+
+<div id="footer">
+	<!-- Main -->
+	<div class="container">
+	</div>
+
+	<!-- Bottom -->
+	<div class="container">
+		<div class="footer-bottom">
+			<div class="sixteen columns">
+				<h4>Follow Us</h4>
+				<ul class="social-icons">
+					<li><a class="facebook" href="#"><i class="icon-facebook"></i></a></li>
+					<li><a class="twitter" href="#"><i class="icon-twitter"></i></a></li>
+					<li><a class="gplus" href="#"><i class="icon-gplus"></i></a></li>
+					<li><a class="linkedin" href="#"><i class="icon-linkedin"></i></a></li>
+				</ul>
+				<div class="copyrights">©  Copyright 2015 by <a href="#">Work Scout</a>. All Rights Reserved.</div>
+			</div>
+		</div>
+	</div>
+
+</div>
+
+<!-- Back To Top Button -->
+<div id="backtotop"><a href="#"></a></div>
+
+</div>
+
+{% endblock %}

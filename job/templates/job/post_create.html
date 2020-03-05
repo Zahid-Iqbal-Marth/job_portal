@@ -1,0 +1,60 @@
+{% extends "job/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+{% if user.customer.Type == 'EM'%}
+
+<div id="titlebar" class="single submit-page">
+	<div class="container">
+
+		<div class="sixteen columns">
+			<h2>
+			   Add Job
+			</h2>
+		</div>
+
+	</div>
+</div>
+
+
+
+<div class="container">
+    <div class="content-section">
+		
+        <form method="POST">
+            {% csrf_token %}
+            <fieldset class="form-group">
+                {{ form|crispy }}
+            </fieldset>
+            <div class="form-group" style="margin-top:2vh;margin-bottom:4vh;">
+                <button class="btn btn-outline-info" type="submit">Save</button>
+            </div>
+		</form>
+    </div>
+</div>
+
+<div id="footer">
+	<div class="container">
+		<div class="footer-bottom">
+			<div class="sixteen columns">
+				<h4>Follow Us</h4>
+				<ul class="social-icons">
+					<li><a class="facebook" href="#"><i class="icon-facebook"></i></a></li>
+					<li><a class="twitter" href="#"><i class="icon-twitter"></i></a></li>
+					<li><a class="gplus" href="#"><i class="icon-gplus"></i></a></li>
+					<li><a class="linkedin" href="#"><i class="icon-linkedin"></i></a></li>
+				</ul>
+				<div class="copyrights">©  Copyright 2020 by <a href="#">Solution's Master</a>. All Rights Reserved.</div>
+			</div>
+		</div>
+	</div>
+
+</div>
+
+<!-- Back To Top Button -->
+<div id="backtotop"><a href="#"></a></div>    
+
+
+
+{% endif %}
+{% endblock content %}

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+{% extends "job/base.html" %}
+{% load static %}
+{% block content %}
+    <br>
+    <br>
+    <br>
+    <br>
+    <div class="container">
+        {% if messages %}
+        <ul class="messagelist">{% for message in messages %}<li>{{ message }}</li>{% endfor %}</ul>
+        {% else %}
+        <h2>Thanks, you paid <strong>{{package.price}}</strong> $</h2>
+        {% endif %}
+    </div>
+   
+   
+{% endblock %}
+
+</body>
+</html>

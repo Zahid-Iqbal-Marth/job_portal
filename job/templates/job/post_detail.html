@@ -1,0 +1,100 @@
+{% extends "job/base.html" %}
+{% load static %}
+{% block content %}
+
+<div id="titlebar">
+	<div class="container">
+		<div class="ten columns">
+			<h2  style="margin-bottom:2vh;" >{{ job.job_title }}</h2>
+		</div>
+
+
+	</div>
+</div>
+<div class="container">
+    <article class="media content-section">
+        <div class="media-body">
+            <div class="article-metadata">
+            {% if object.job_poster == user.customer %}
+            <div>
+                <a class="btn btn-primary btn-sm" href="{% url 'post-update' object.id %}">Update Post</a>
+                <a class="btn btn-danger btn-sm " style="margin-left:3vh;" href="{% url 'post-delete' object.id %}">Delete Post</a>
+                <a class="btn btn-primary btn-sm" style="margin-left:3vh;" href="{% url 'post-applicants' object.id %}">View Applications</a>               
+            </div>
+            <div>
+                <p class="article-content">{{ job.application_set.count }}</p>
+            </div>
+            {% elif user.customer.Type == 'CN' %}
+            <div style="margin-bottom:2vh;">
+                <a class="btn btn-primary btn-sm mt-1 mb-1" href="{% url 'user-selectresume' job.id%}">Apply Now</a>
+            </div>               
+            {% endif %}
+            </div>
+
+            <div class="container">
+	
+                <!-- Recent Jobs -->
+                <div class="eleven columns">
+                <div class="padding-right">
+                    
+                    <!-- Company Info -->
+                    <div class="company-info">
+                        <img src="{{ job.company_logo.url }}" alt="">
+                        <div class="content">
+                            <h4>{{ job.job_poster.user.username }}</h4>
+                            <h5>{{ job.company_name }}</h5>
+                            <h5>{{ job.location }}</h5>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+            
+                    
+                    <h4 class="margin-bottom-10" style="font-family:bold;">Description : </h4>
+                    <p class="margin-reset">
+                            {{ job.discription }}
+                    </p>
+            
+                    <h4 class="margin-bottom-10" style="font-family:bold;">Date Posted : </h4>
+                    <p class="margin-reset" style="padding-bottom:4vh;">
+                            {{ job.post_date }}
+                    </p>
+            
+            
+                </div>
+                </div>
+            </div>
+        </div>
+    </article>
+</div>    
+<div id="footer">
+	<!-- Main -->
+	<div class="container">
+
+		
+	</div>
+
+	<!-- Bottom -->
+	<div class="container">
+		<div class="footer-bottom">
+			<div class="sixteen columns">
+				<h4>Follow Us</h4>
+				<ul class="social-icons">
+					<li><a class="facebook" href="#"><i class="icon-facebook"></i></a></li>
+					<li><a class="twitter" href="#"><i class="icon-twitter"></i></a></li>
+					<li><a class="gplus" href="#"><i class="icon-gplus"></i></a></li>
+					<li><a class="linkedin" href="#"><i class="icon-linkedin"></i></a></li>
+				</ul>
+				<div class="copyrights">©  Copyright 2020 by <a href="#">Solution's Masters</a>. All Rights Reserved.</div>
+			</div>
+		</div>
+	</div>
+
+</div>
+
+<!-- Back To Top Button -->
+<div id="backtotop"><a href="#"></a></div>
+
+
+
+
+{% endblock %}

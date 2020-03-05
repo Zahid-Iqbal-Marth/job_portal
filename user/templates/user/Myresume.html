@@ -1,0 +1,85 @@
+{% extends "job/base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div id="titlebar" class="single">
+	<div class="container">
+
+		<div class="sixteen columns">
+			<h2>Manage Resumes</h2>
+		</div>
+
+	</div>
+</div>
+
+
+    <div class="container">
+	
+	<!-- Table -->
+	<div class="sixteen columns">
+
+		<p class="margin-bottom-25">Your resume can be viewed,or removed below.</p>
+
+		<table class="manage-table resumes responsive-table">
+   
+			<tr>
+				<th><i class="fa fa-user"></i> Name</th>
+				<th><i class="fa fa-file-text"></i> Title</th>
+				<th><i class="fa fa-map-marker"></i> Location</th>
+				<th></th>
+			</tr>
+ {% for r in resume %}
+			<tr>
+				<td class="title"><a href="{% url 'user-viewresume' r.id %}">{{r.name}}</a></td>
+				<td>{{ r.profession_title }}</td>
+				<td>{{ r.location }}</td>
+				<td class="action">
+				    <a href="{% url 'user-updateresume' r.id %}"><i class="fa fa-pencil"></i> Edit</a>
+					<a href="{% url 'user-deleteresume' r.id%}" class="delete"><i class="fa fa-remove"></i> Delete</a>
+				</td>
+			</tr>
+    {% endfor %}   
+
+		</table>
+
+		<br>
+
+		<a href="{% url 'user-addresume' %}" class="button">Add Resume</a>
+
+	</div>
+
+
+</div>
+
+<div class="margin-top-60"></div>
+
+<div id="footer">
+	<div class="container">
+	<!-- Main -->
+	</div>
+
+	<!-- Bottom -->
+	<div class="container">
+		<div class="footer-bottom">
+			<div class="sixteen columns">
+				<h4>Follow Us</h4>
+				<ul class="social-icons">
+					<li><a class="facebook" href="#"><i class="icon-facebook"></i></a></li>
+					<li><a class="twitter" href="#"><i class="icon-twitter"></i></a></li>
+					<li><a class="gplus" href="#"><i class="icon-gplus"></i></a></li>
+					<li><a class="linkedin" href="#"><i class="icon-linkedin"></i></a></li>
+				</ul>
+				<div class="copyrights">©  Copyright 2020 by <a href="#">Solution's Master</a>. All Rights Reserved.</div>
+			</div>
+		</div>
+	</div>
+
+</div>
+
+<!-- Back To Top Button -->
+<div id="backtotop"><a href="#"></a></div>
+
+
+
+
+{% endblock content %}

@@ -1,0 +1,42 @@
+{% extends "job/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div id="titlebar" class="single">
+	<div class="container">
+
+		<div class="sixteen columns">
+			<h2>View Applications</h2>
+		</div>
+
+	</div>
+</div>
+<div class="container">
+     <div class="application">
+	        
+
+			{% for r in resume %}  
+			<div class="app-content">
+             
+				<!-- Name / Avatar -->
+				<div class="info">
+				   <img class="rounded-circle account-img" src="{{ r.photo.url }}">
+					<span>{{ r.profession_title }}</span>
+					<p>{{ r.name.user.get_full_name }}</p>
+					<p>{{ r.name.user.email }}</p>
+				</div>
+				
+				<!-- Buttons -->
+				<div class="buttons">
+					<a href="{% url 'post-detailapplicants' job.id r.id %}" ><i class="fa fa-plus-circle"></i> Show Details</a>
+				</div>
+				<div class="clearfix"></div>
+
+			</div>
+		 {% endfor %}	
+		</div>
+    
+
+
+</div>
+
+{% endblock content %}

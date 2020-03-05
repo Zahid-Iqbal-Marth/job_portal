@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+{% extends "job/base.html" %}
+{% load static %}
+{% block content %}
+<br>
+<br>
+<br>
+<br>
+    <div class="container"> 
+        {% if messages %}
+        <ul class="messagelist">{% for message in messages %}<li>{{ message }}</li>{% endfor %}</ul>
+        {% else %}
+        <h2 style=" text-align: center">You have selected <strong>{{package.package_type}}</strong> package</h2>
+           
+      
+        <div class='plan color-1 one-third column' ,style="margin:50px">
+           
+        <div class="plan-features">
+            <ul>
+                <li>One Time Fee</li>
+                <li>This Plan Includes {{package.job_posting_limit}} Jobs</li>
+                <li>Highlighted Job Post</li>
+                <li>View {{package.resume_view_limit}} resumes</li>
+                <li>Posted For {{package.job_posted_time}} Days</li>
+                <li>Price {{package.price}} $</li>
+            </ul>
+
+            <form action="{% url 'charge' package.id %}" method="post">
+                {% csrf_token %}
+                <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                        data-key="{{ key }}"
+                        data-description="A Django Charge"
+                        data-amount="500"
+                        data-locale="auto"></script>
+                
+                </form>
+             </div>
+       
+        {% endif %}
+    </div> 
+
+    
+   
+{% endblock %}
+
+</body>
+</html>
